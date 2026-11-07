@@ -133,6 +133,16 @@ pub fn print_report(mtm: MainThreadMarker) {
                 fmt_num(n.size.width * g.backing_scale),
                 fmt_num(n.size.height * g.backing_scale)
             );
+            let (w, h) = (
+                n.size.width + crate::config::NOTCH_TRIM_WIDTH,
+                n.size.height + crate::config::NOTCH_TRIM_HEIGHT,
+            );
+            println!(
+                "    shapes: Collapsed {}x{}pt, Ears {}pt tall (config.rs: NOTCH_TRIM_*, EARS_EXTRA_HEIGHT)",
+                fmt_num(w),
+                fmt_num(h),
+                fmt_num(h + crate::config::EARS_EXTRA_HEIGHT)
+            );
         }
         None => {
             println!("notch: none found (clamshell mode, external display only, or no notch)");

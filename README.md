@@ -150,17 +150,26 @@ Every colour, size, timing, spring, line and toggle lives there, including:
 - `SHOW_UNPLUG`, `SHOW_FULL`, `SHOW_UNPLUG_LINE`, `SHOW_FULL_LINE`
 - the per-sequence timelines (`zap`, `defeat`, `victory`, `calm` modules)
 - the springs (`OPEN_SPRING` is damping 11 / stiffness 190 / mass 1)
+- the shape sizes (`EARS_EXTRA_WIDTH`, `EARS_EXTRA_HEIGHT`, `LAIR_WIDTH`, ...)
 
 After editing, run `make install` again (or `make release` to ship it).
 
 ## Checking the alignment
 
 `--debug-shape` draws the Lair in translucent red and outlines the notch rect
-macOS reports in yellow. The yellow outline should hug the real hole. If it's
-off, nudge `NOTCH_TRIM_WIDTH`, `NOTCH_TRIM_HEIGHT` or `NOTCH_CORNER_RADIUS` in
-`config.rs`. The corner radius should err large: a too-small radius shows
-black slivers at the notch's bottom corners while collapsed, and a too-large
-one is invisible.
+macOS reports in yellow. The yellow outline should hug the real hole.
+
+macOS reports the notch's height (the menu bar's safe area) in whole points.
+At scaled resolutions that can land up to a point above the physical bottom
+edge. So the Ears are built 2pt taller than reported (`EARS_EXTRA_HEIGHT` in
+`config.rs`), which keeps their black flush with the notch's and their rim
+entirely below it on every model. The Collapsed shape keeps the reported
+height, so it always hides inside the hole. `--print-geometry` prints the
+reported rect and the sizes the shapes use.
+
+If something's still off on your Mac, nudge `NOTCH_TRIM_WIDTH`,
+`NOTCH_TRIM_HEIGHT` or `NOTCH_CORNER_RADIUS`. Err large on all three: too
+small shows black slivers around the notch, too large is invisible.
 
 ## How it works
 
@@ -176,7 +185,7 @@ one is invisible.
   inset. It's recomputed when screen parameters change. With the lid closed,
   or only an external display, shows are skipped.
 - **Shapes** (`shape.rs`): Collapsed (exactly the notch), Ears (+110pt each
-  side) and Lair (400 × notch+64pt) share one path structure. That lets them
+  side, 2pt taller) and Lair (400 × notch+64pt) share one path structure. That lets them
   morph point by point, including spring overshoot. The shape is a mask over a
   black layer, so content is revealed as it grows. The 1pt cyan inner stroke
   is a 2pt stroke whose outer half is clipped by the same mask.

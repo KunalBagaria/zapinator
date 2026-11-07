@@ -1,6 +1,6 @@
 [package]
 name = "notch-zap-inator"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "A dramatic mad-scientist charging animation for the MacBook notch"
 license = "MIT"

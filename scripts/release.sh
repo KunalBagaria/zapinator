@@ -79,7 +79,8 @@ git -C dist/tap add Casks/zapinator.rb
 if git -C dist/tap diff --cached --quiet; then
     echo "    cask already up to date"
 else
-    git -C dist/tap commit --quiet -m "zapinator $VERSION"
+    # RELEASE_COMMIT_TRAILER, if set, becomes the commit message's last paragraph.
+    git -C dist/tap commit --quiet -m "zapinator $VERSION" ${RELEASE_COMMIT_TRAILER:+-m "$RELEASE_COMMIT_TRAILER"}
     git -C dist/tap push --quiet
 fi
 

@@ -58,7 +58,7 @@ impl States {
         };
         let ears = Spec {
             width: notch_width + 2.0 * config::EARS_EXTRA_WIDTH,
-            height: notch_height,
+            height: notch_height + config::EARS_EXTRA_HEIGHT,
             ear_radius: config::EAR_RADIUS,
             corner_radius: config::EXPANDED_CORNER_RADIUS,
             sag: 0.0,

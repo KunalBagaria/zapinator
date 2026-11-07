@@ -56,9 +56,22 @@ pub const CAPSULE_OUTLINE_OPACITY: f64 = 0.45;
 /// black slivers at the corners.
 pub const NOTCH_CORNER_RADIUS: f64 = 10.0;
 /// Fine-tune the notch rect if `--debug-shape` shows a mismatch. Positive
-/// values make the shape wider/taller than what macOS reports.
+/// values make every shape wider/taller than what macOS reports.
 pub const NOTCH_TRIM_WIDTH: f64 = 0.0;
 pub const NOTCH_TRIM_HEIGHT: f64 = 0.0;
+
+/// How much taller than the reported notch the Ears are.
+///
+/// macOS reports the notch's height (the menu bar's safe area) in whole
+/// points. At the scaled "looks like" resolutions most MacBooks ship with, a
+/// point isn't a whole number of panel pixels (1.74 on a 13" Air at its
+/// default 1470x956), so the physical bottom edge can sit up to a point
+/// lower than reported. The Ears' 1pt inner rim has to hang entirely below
+/// that edge. Otherwise their black stops short of the notch's, and the
+/// sides look a pixel shorter than the notch. 2pt = the rim + the worst-case
+/// rounding. The Collapsed shape keeps the reported height, so it always
+/// hides inside the hole.
+pub const EARS_EXTRA_HEIGHT: f64 = 2.0;
 
 /// Concave "ears" where the expanded shape meets the top of the screen.
 pub const EAR_RADIUS: f64 = 8.0;
