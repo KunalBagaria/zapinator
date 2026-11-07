@@ -7,7 +7,7 @@ cask "zapinator" do
   url "https://zapinator.kunalbagaria.com/releases/NotchZapInator-#{version}.tar.gz"
   name "NOTCH-ZAP-INATOR"
   desc "Mad-scientist notch animation for when your MacBook starts charging"
-  homepage "https://zapinator.kunalbagaria.com/"
+  homepage "https://github.com/KunalBagaria/zapinator"
 
   depends_on arch: :arm64
   depends_on macos: :ventura

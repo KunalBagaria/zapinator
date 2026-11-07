@@ -3,6 +3,9 @@ name = "notch-zap-inator"
 version = "0.1.0"
 edition = "2024"
 description = "A dramatic mad-scientist charging animation for the MacBook notch"
+license = "MIT"
+repository = "https://github.com/KunalBagaria/zapinator"
+homepage = "https://zapinator.kunalbagaria.com"
 publish = false
 
 [features]

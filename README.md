@@ -223,6 +223,7 @@ All three ways of installing (curl, Homebrew, `make install`) run the same
 
 ```
 Cargo.toml
+LICENSE                    MIT
 Info.plist                 LSUIElement app bundle metadata (version filled in by bundle.sh)
 Makefile                   bundle / install / uninstall / release / demo / check / logs
 docs/demo.gif              the animation at the top of this README
@@ -262,3 +263,7 @@ src/
 Uninstalling stops the agent, removes the app and the LaunchAgent, and
 restores the chime setting. The log file stays (Homebrew's `--zap` removes
 it).
+
+## License
+
+[MIT](LICENSE)
