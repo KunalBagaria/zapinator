@@ -1,0 +1,86 @@
+[package]
+name = "notch-zap-inator"
+version = "0.1.0"
+edition = "2024"
+description = "A dramatic mad-scientist charging animation for the MacBook notch"
+publish = false
+
+[features]
+default = ["sound"]
+# Synthesised sound effects (switch them off with SOUND_ENABLED in src/config.rs,
+# or build with --no-default-features to leave the audio stack out entirely).
+sound = ["dep:rodio"]
+
+[dependencies]
+objc2 = "0.6.5"
+block2 = "0.6.2"
+objc2-foundation = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "block2",
+    "NSArray",
+    "NSDate",
+    "NSGeometry",
+    "NSNotification",
+    "NSObject",
+    "NSOperation",
+    "NSProcessInfo",
+    "NSRunLoop",
+    "NSString",
+    "NSTimer",
+    "NSValue",
+] }
+objc2-app-kit = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "objc2-core-foundation",
+    "objc2-quartz-core",
+    "NSAccessibility",
+    "NSApplication",
+    "NSColor",
+    "NSFont",
+    "NSFontDescriptor",
+    "NSGraphics",
+    "NSImage",
+    "NSPanel",
+    "NSResponder",
+    "NSRunningApplication",
+    "NSScreen",
+    "NSView",
+    "NSWindow",
+    "NSWorkspace",
+] }
+objc2-quartz-core = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "objc2-core-foundation",
+    "objc2-core-graphics",
+    "CAAnimation",
+    "CALayer",
+    "CAMediaTiming",
+    "CAMediaTimingFunction",
+    "CAShapeLayer",
+    "CATextLayer",
+    "CATransaction",
+] }
+objc2-core-graphics = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "libc",
+    "CGColor",
+    "CGDirectDisplay",
+    "CGDisplayConfiguration",
+    "CGPath",
+    "CGWindowLevel",
+] }
+objc2-core-foundation = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "objc2",
+    "CFCGTypes",
+] }
+core-foundation = "0.10.1"
+rand = "0.10.3"
+rodio = { version = "0.23.0", optional = true, default-features = false, features = ["playback"] }
+log = "0.4.35"
+env_logger = { version = "0.11.11", default-features = false, features = ["auto-color", "humantime"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

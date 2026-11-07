@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Template: agent.sh fills in __LABEL__, __EXE__ and __LOG__. -->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>__LABEL__</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>__EXE__</string>
+	</array>
+	<!-- Start at login. -->
+	<key>RunAtLoad</key>
+	<true/>
+	<!-- Restart only if it crashes, not after a clean exit. -->
+	<key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
+	<key>ThrottleInterval</key>
+	<integer>10</integer>
+	<!-- Needs the window server: only in a logged-in GUI session. -->
+	<key>LimitLoadToSessionType</key>
+	<string>Aqua</string>
+	<key>ProcessType</key>
+	<string>Interactive</string>
+	<key>StandardOutPath</key>
+	<string>__LOG__</string>
+	<key>StandardErrorPath</key>
+	<string>__LOG__</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>RUST_LOG</key>
+		<string>info</string>
+	</dict>
+</dict>
+</plist>

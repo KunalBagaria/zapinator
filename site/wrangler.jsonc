@@ -1,0 +1,15 @@
+// Cloudflare Worker for zapinator.kunalbagaria.com. Deployed by
+// scripts/release.sh (`make release`), which fills ../dist/site first.
+{
+  "name": "zapinator",
+  "main": "worker.js",
+  "compatibility_date": "2025-04-01",
+  "account_id": "760e62b7e975cf40bf38bae84b9825bd",
+  "workers_dev": false,
+  "routes": [{ "pattern": "zapinator.kunalbagaria.com", "custom_domain": true }],
+  "assets": {
+    "directory": "../dist/site",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
+}
